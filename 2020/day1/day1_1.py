@@ -12,15 +12,15 @@ with open(input_file) as f:
 data = [d.strip() for d in data]
 # PART one
 for i in data :
-    for j in data:
+    for j in data[data.index(i):]:
         if int(i) + int(j) == 2020 :
             print("part1: luvut on " + j + " ja " + i)
             tulo = int(j) * int(i)
             print("part1: niiden tulo= " + str(tulo))
 
 for i in data :
-    for j in data:
-        for k in data:
+    for j in data[data.index(i):]:
+        for k in data[data.index(j):]:
             if int(i) + int(j) + int(k) == 2020 :
                 print("part2: luvut on " + j + ", " + k + " ja " + i)
                 tulo = int(j) * int(i) * int(k)
