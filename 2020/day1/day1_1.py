@@ -2,6 +2,7 @@
 import sys
 
 input_file = 'test_input.txt'
+input_file = 'input'
 
 if len(sys.argv) >  1 :
     input_file = sys.argv[1]
@@ -25,3 +26,6 @@ for i in data :
                 print("part2: luvut on " + j + ", " + k + " ja " + i)
                 tulo = int(j) * int(i) * int(k)
                 print("part2: niiden tulo= " + str(tulo))
+
+
+print('done')
