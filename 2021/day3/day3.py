@@ -64,7 +64,6 @@ else:
 
 
 for d in data:
-    dicti[d] = 1
     for i in range(len(d)):
         gamma[i] += int(d[i])
 
