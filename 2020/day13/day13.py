@@ -29,29 +29,37 @@ for b in busses:
 
 answer = (min - int(time)) * int(nb)
 
-print("PART1: first bus is {} at time {} with answe {}".format(nb, min, answer))
+print("PART1: first bus is {} at time {} with answer {}".format(nb, min, answer))
+print(busses)
+
+jatka = True
+iii = 1
+maksimi = 0
+positio = 0
+bussiloiset = []
+idexiloiset = []
+for b in busses:
+    if b != 'x':
+        bussiloiset.append(int(b))
+        idexiloiset.append(busses.index(b))
 
 
-xarray = []
-yarray = []
-aarray = []
+print(bussiloiset)
+print(idexiloiset)
+kerroin = np.prod(bussiloiset)
+print(kerroin)
+while jatka:
+    aika = iii*kerroin
+    toimi = True
+    for i in range(len(bussiloiset)):
+        if (aika-idexiloiset[i]) % bussiloiset[i] != 0:
+            toimi = False
+            break
+    if toimi:
+        print("Toimi")
+        print(aika)
+        jatka = False
 
-for i in range(len(busses)):
-    if busses[i] != 'x':
-        xarray.append(int(busses[i]))
-        yarray.append(i)
-        aarray.append(0)
-
-print(xarray)
-print(yarray)
-
-npa = np.array([xarray,yarray])
-npb = np.array(aarray)
-
-print(npa)
-print(npb)
-
-C = np.linalg.lstsq(npa.T, npb)
-
-
-print(C)
+    iii += 1
+    if iii == 100000068781:
+        jatka = False
