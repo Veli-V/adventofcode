@@ -1,0 +1,80 @@
+
+Muutetaan ascii arvoihin jotta voidaan tulostaa
+++++ ++++
+[
+>
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+<<<<<<<<<<
+-
+]
+
+>.>.>.>.>.>.>.>.>.>.  tulostus rivi
+
+
+
+tallennetaan päivien määrä positioon 0
++++++
++++++
++++++
++++20 päivää  solu 0
+
+> jätetään solu 1 siirroille tyhjäksi solu 1
+alustetaan alkuperäiset arvot
+> päivässä 0 0 solu 2
+> + päivässä 1 1 solu 3
+> + päivässä 2 1 solu 4
+> ++ päivässä 3 2 solu 5
+> + päivässä 4 1 solu 6
+
+ratkaisu alkaa
+<<<<<<  soluun 0
+[ looppi alkaa
+>> soluun 3
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+>
+[<+>-]
+<<<<<<<<<
+[>>>>>>>+>>+
+<<<<<<<<<-]
+<-
+]
+Muutetaan ascii arvoihin jotta voidaan tulostaa
+++++ ++++
+[
+>
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+> +++ +++
+<<<<<<<<<<
+-
+]
+
+>.>.>.>.>.>.>.>.>.>.  tulostus rivi
