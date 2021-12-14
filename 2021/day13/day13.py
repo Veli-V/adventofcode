@@ -25,6 +25,7 @@ for line in file:
      
 
 
+print()
 
 dots = {}
 for d in data:
@@ -34,7 +35,7 @@ for d in data:
     maxy = max(int(tmp[1]), maxy)
 
 
-foldCount = 0
+firstFold = True
 for f in folds:
     foldCount += 1
     foldDir = f.split(" ")[2]
@@ -55,9 +56,11 @@ for f in folds:
                     dots[(fold+(fold-j),i)] = "#"
                     del dots[(j,i)]
         maxx = fold -1
-    if foldCount == 1:
+    if firstFold:
         print("PART1: dots remaining after one fold: {}".format(len(dots)))
+        firstFold = False
 
+print("PART2:")
 for i in range(maxy +1):
     for j in range(maxx + 1):
         print(dots.get((j,i), "."), end="")
