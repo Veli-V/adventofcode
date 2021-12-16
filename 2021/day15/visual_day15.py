@@ -110,7 +110,7 @@ def findRoute(start, part2 = False, greed = 1):
     print("Failas")
 
 def main():
-    global SCREEN, CLOCK
+    global SCREEN, CLOCK, SQUARESIZE
     pygame.init()
     SCREEN = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     CLOCK = pygame.time.Clock()
@@ -128,6 +128,10 @@ def main():
                     findRoute((0,0), False, 2)
                 if event.key == pygame.K_s:
                     findRoute((0,0), False, 1)
+                if event.key == pygame.K_d:
+                    SQUARESIZE = SQUARESIZE // 5
+                    #SCREEN = pygame.display.set_mode((WINDOW_WIDTH*5, WINDOW_HEIGHT*5))
+                    findRoute((0,0), True, 5)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
