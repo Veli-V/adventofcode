@@ -102,3 +102,5 @@ print("Part1:")
 print("It dropped {} before going to void".format(part1))
 print("Part2:")
 print("It dropped {} before blocking start".format(sands))
+
+print(miny, maxy, minx, maxx)
