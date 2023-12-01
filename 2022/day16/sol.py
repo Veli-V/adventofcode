@@ -26,10 +26,16 @@ class Cave():
     def __str__(self):
         return "cave {}, flowrate {}, flow {}, available routes {}".format(self.name, self.flowrate, self.overallflow, self.routes)
 
+    def calcRoutes(self):
+        visited = []
+
+
+
 
 start = "AA"
 timer = 30
 closed, opened, routes = {}, {}, []
+routed = {}
 for d in data:
     d = d.split(" ")
     name = d[1]
