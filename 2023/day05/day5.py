@@ -12,6 +12,21 @@ seeds = []
 sts, stf, ftw, wtl, ltt, tth, htl = [], [], [], [], [], [], []
 state = "seed"
 
+def checkInMap(seed, map):
+    for m in map:
+        if seed in range(m[1], m[1]+m[2]):
+            return m[0] + seed - m[1]
+    return seed
+
+def checkInMapReverse(seed, map):
+    for m in map:
+        if seed > m[0] and seed < m[0]+m[2]+1:
+            return m[1] + seed - m[0]
+    return seed
+
+
+
+
 with open(input_file) as f:
     seeds = f.readline().split(":")[1].split()
     #data = f.readlines()
@@ -51,11 +66,54 @@ with open(input_file) as f:
 
 #data = [d.strip() for d in data]
 seeds = [int(i) for i in seeds]
-print("Seeds: ", seeds)
-print("sts: ", sts)
-print("stf: ", stf)
-print("ftw: ", ftw)
-print("wtl: ", wtl)
-print("ltt: ", ltt)
-print("tth: ", tth)
-print("htl: ", htl)
+# Check seeds loop
+
+ans = sys.maxsize
+for s in seeds:
+    soil = checkInMap(s, sts)
+    ferti = checkInMap(soil, stf )
+    water = checkInMap(ferti, ftw )
+    light = checkInMap(water, wtl )
+    temp = checkInMap(light, ltt )
+    humi = checkInMap(temp, tth )
+    loc = checkInMap(humi, htl )
+    if loc < ans:
+        ans = loc
+    #print(s, "->", soil, "->", ferti, "->", water, "->", light, "->", temp, "->", humi, "->", loc)
+
+print("Part1: ", ans)
+
+#part2
+i = 0
+seeds2 = []
+while i < len(seeds):
+    seeds2.append([seeds[i], seeds[i] + seeds[i+1]])
+    i += 2
+
+print(seeds2)
+
+ans = sys.maxsize
+i = 0
+found = False
+while i < sys.maxsize:
+    print(i)
+    humi = checkInMapReverse(i, htl)
+    temp = checkInMapReverse(humi, tth)
+    light = checkInMapReverse(temp, ltt)
+    water = checkInMapReverse(light, wtl)
+    ferti = checkInMapReverse(water, ftw)
+    soil = checkInMapReverse(ferti, stf)
+    seed = checkInMapReverse(soil, sts)
+    for s in seeds2:
+        if seed in range(s[0], s[1]+1):
+            print("löytyi, siemen: ", seed, " paikka: ", i)
+            found = True
+            break
+    if not found:
+        i += 1
+    else:
+        break
+
+
+
+print("Part2: ", ans)
