@@ -2,7 +2,7 @@
 import sys
 
 input_file = "test.txt"
-#input_file = 'input.txt'
+input_file = 'input.txt'
 #input_file = "test2.txt"
 
 if len(sys.argv) >  1 :
@@ -10,7 +10,6 @@ if len(sys.argv) >  1 :
 
 seeds = []
 sts, stf, ftw, wtl, ltt, tth, htl = [], [], [], [], [], [], []
-state = "seed"
 
 def checkInMap(seed, map):
     for m in map:
@@ -65,6 +64,7 @@ with open(input_file) as f:
                     htl.append([int(i) for i in line.split()])
 
 #data = [d.strip() for d in data]
+print(seeds)
 seeds = [int(i) for i in seeds]
 # Check seeds loop
 
@@ -93,10 +93,11 @@ while i < len(seeds):
 print(seeds2)
 
 ans = sys.maxsize
-i = 0
+i = 9975120
 found = False
 while i < sys.maxsize:
-    print(i)
+    if i%100000 == 0:
+        print(i)
     humi = checkInMapReverse(i, htl)
     temp = checkInMapReverse(humi, tth)
     light = checkInMapReverse(temp, ltt)
@@ -116,4 +117,4 @@ while i < sys.maxsize:
 
 
 
-print("Part2: ", ans)
+print("Part2: ", i)
