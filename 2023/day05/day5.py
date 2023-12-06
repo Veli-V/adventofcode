@@ -2,7 +2,7 @@
 import sys
 
 input_file = "test.txt"
-input_file = 'input.txt'
+#input_file = 'input.txt'
 #input_file = "test2.txt"
 
 if len(sys.argv) >  1 :
@@ -93,7 +93,7 @@ while i < len(seeds):
 print(seeds2)
 
 ans = sys.maxsize
-i = 9975120
+i = 0
 found = False
 while i < sys.maxsize:
     if i%100000 == 0:
@@ -107,7 +107,7 @@ while i < sys.maxsize:
     seed = checkInMapReverse(soil, sts)
     for s in seeds2:
         if seed in range(s[0], s[1]+1):
-            print("löytyi, siemen: ", seed, " paikka: ", i)
+            print("löytyi, siemen: ", seed, " paikka: ", i-1)
             found = True
             break
     if not found:
@@ -116,5 +116,4 @@ while i < sys.maxsize:
         break
 
 
-
-print("Part2: ", i)
+print("Part2: ", i-1)

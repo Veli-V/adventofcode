@@ -1,3 +1,4 @@
 /.vscode/*
 /2020/.vscode/
-input.txt
+*.txt
+*.swp
