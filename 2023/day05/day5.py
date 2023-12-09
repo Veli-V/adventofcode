@@ -23,9 +23,6 @@ def checkInMapReverse(seed, map):
             return m[1] + seed - m[0]
     return seed
 
-
-
-
 with open(input_file) as f:
     seeds = f.readline().split(":")[1].split()
     #data = f.readlines()
