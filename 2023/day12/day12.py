@@ -18,100 +18,69 @@ with open(input_file) as f:
 
 data = [d.strip() for d in data]
 
-def checkNumbers(row, numbers):
-    numbers = [int(i) for i in numbers.split(",")]
-    tmpNum = 0
-    i = 0
-    tmpNumbers = []
-    if row.count("#") != sum(numbers):
-        return 0
-    for r in row:
-        if r == "#":
-            tmpNum += 1
-        elif r == "." and tmpNum != 0:
-            if i >= len(numbers):
-                return 0
-            if tmpNum != numbers[i]:
-                return 0
-            tmpNumbers.append(tmpNum)
-            tmpNum = 0
-            i += 1
-    if tmpNum != 0:
-        tmpNumbers.append(tmpNum)
-    if numbers == tmpNumbers:
-        return 1
-    return 0
-
-
-
-    
-
-def createRows(row):
-    tmpRow = row
-    tmpList = []
-    tmpList2 = []
-
-    if len(tmpRow) == 0:
-        return tmpList
-    elif len(tmpRow) > 1:
-        tmpList = createRows(tmpRow[1:])
-
-    if tmpRow[0] == "?":
-        if len(tmpList) == 0:
-            tmpList2.append(".")
-            tmpList2.append("#")
-        else:
-            for l in tmpList:
-                tmpList2.append("."+l)
-                tmpList2.append("#"+l)
-    else:
-        if len(tmpList) == 0:
-            tmpList2.append(tmpRow[0])
-        for l in tmpList:
-            tmpList2.append(tmpRow[0]+l)
-
-    return tmpList2
-
 @cache
-def addRows(row1, row2):
-    return [row1 + "." + row2, row1 + "#" + row2]
+def arrangements(row, numbers):
+    #print(row, numbers)
+    if len(numbers) == 0:
+        return 1 if "#" not in row else 0
+    if len(row) == 0:
+        return 1 if len(numbers) == 0 else 0
 
+    curc = row[0]
+    curn = int(numbers.split(",")[0])
+    answer = 0
+
+    if curc in "?.":
+        answer += arrangements(row[1:], numbers)
+    # eka on tai voi olla #
+    if curc in "#?":
+        legal = True
+        # tarkistetaan voiko tulla laillinen jos #
+        if len(row) < curn:
+            legal = False
+        if "." in row[:curn]:
+            legal = False
+        if len(row) > curn and row[curn] == "#":
+            legal = False
+
+        if legal and "," in numbers:
+            answer += arrangements(row[int(curn)+1:], numbers[numbers.index(",")+1:])
+        elif legal:
+                answer += 1
+
+    return answer
 
 start = time.perf_counter()
 tans = 0
 
 #print(dd)
+#
+testi = ".##?#????????????????? 4,14"
+#data = [testi]
 for dd in data:
-    #print(dd)
     tans = 0
     row = dd.split(" ")
     nums = row[1]
     row = row[0]
-    rows = createRows(row)
-    for r in rows:
-       tans += checkNumbers(r, nums)
-    #print(tans)
-    ans += tans
-    #ans += len(rows)
+    ans += arrangements(row, nums)
 
 end = time.perf_counter()
 print("part1:", ans)
 print("aikaa meni:",  end-start)
-start = time.perf_counter()
 
-#part 2
-#Dd = data[1]
+start = time.perf_counter()
+tans = 0
+
 #print(dd)
-#tans = 0
-#row = dd.split(" ")
-#nums = row[1]
-#nums = nums + "," +nums + "," +nums + "," +nums + "," +nums
-#row = row[0]
-#row = row + "?" +row + "?" +row + "?" +row + "?" +row
-#rows = createRows(row)
-#print(len(rows))
-#ans += tans
-#
-#end = time.perf_counter()
-#print("part2:", ans)
-#print("aikaa meni:",  end-start)
+#for dd in data:
+#    tans = 0
+#    row = dd.split(" ")
+#    nums = row[1]
+#    row = row[0]
+#    row = row + "?" +row + "?" +row + "?" +row + "?" +row
+#    nums = nums + "," + nums + "," + nums + "," + nums + "," + nums
+#    ans += arrangements(row, nums)
+
+end = time.perf_counter()
+print("part2:", ans)
+print("aikaa meni:",  end-start)
