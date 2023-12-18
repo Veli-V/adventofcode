@@ -44,7 +44,9 @@ def arrangements(row, numbers):
             legal = False
 
         if legal and "," in numbers:
-            answer += arrangements(row[int(curn)+1:], numbers[numbers.index(",")+1:])
+            answer += arrangements(row[curn+1:], numbers[numbers.index(",")+1:])
+        elif len(row) > curn and "#" in row[curn+1:]:
+            legal = False
         elif legal:
                 answer += 1
 
@@ -62,6 +64,8 @@ for dd in data:
     row = dd.split(" ")
     nums = row[1]
     row = row[0]
+    #nums = eval(nums)
+    #ans += count_arrangements(row, nums)
     ans += arrangements(row, nums)
 
 end = time.perf_counter()
@@ -69,17 +73,17 @@ print("part1:", ans)
 print("aikaa meni:",  end-start)
 
 start = time.perf_counter()
-tans = 0
+ans = 0
 
 #print(dd)
-#for dd in data:
-#    tans = 0
-#    row = dd.split(" ")
-#    nums = row[1]
-#    row = row[0]
-#    row = row + "?" +row + "?" +row + "?" +row + "?" +row
-#    nums = nums + "," + nums + "," + nums + "," + nums + "," + nums
-#    ans += arrangements(row, nums)
+for dd in data:
+    tans = 0
+    row = dd.split(" ")
+    nums = row[1]
+    row = row[0]
+    row = "?".join([row] * 5)
+    nums = ",".join([nums] * 5)
+    ans += arrangements(row, nums)
 
 end = time.perf_counter()
 print("part2:", ans)
